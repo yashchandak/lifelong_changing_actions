@@ -9,7 +9,7 @@ class Parser(object):
         parser.add_argument("--base", default=-2, help="Base counter for Hyper-param search", type=int)
         parser.add_argument("--inc", default=-2, help="Increment counter for Hyper-param search", type=int)
         parser.add_argument("--hyper", default=-2, help="Which Hyper param settings", type=int)
-        parser.add_argument("--seed", default=1234, help="seed for variance testing", type=int)
+        parser.add_argument("--seed", default=12345, help="seed for variance testing", type=int)
 
         # General parameters
         parser.add_argument("--save_count", default=1000, help="Number of ckpts for saving results and model", type=int)
@@ -50,8 +50,8 @@ class Parser(object):
 
     def Env_n_Agent_args(self, parser):
         # parser.add_argument("--algo_name", default='CL_Vanilla_ActorCritic', help="")
-        # parser.add_argument("--algo_name", default='CL_DPG', help="")
-        parser.add_argument("--algo_name", default='CL_ActorCritic', help="Learning algorithm")
+        parser.add_argument("--algo_name", default='CL_DPG', help="")
+        # parser.add_argument("--algo_name", default='CL_ActorCritic', help="Learning algorithm")
         parser.add_argument("--env_name", default='Gridworld_CL', help="Environment to run the code")
         parser.add_argument("--n_actions", default=8, help="number of base actions for gridworld", type=int)
 
@@ -79,15 +79,15 @@ class Parser(object):
         parser.add_argument("--load_embed", default=False, type=self.str2bool, help="Retrain flag")
 
         parser.add_argument("--sup_batch_size", default=16, help="(64)Supervised learning Batch size", type=int)
-        parser.add_argument("--initial_phase_epochs", default=20, help="maximum number of episodes (150)", type=int)
+        parser.add_argument("--initial_phase_epochs", default=50, help="maximum number of episodes (150)", type=int)
 
 
     def Main_AC_args(self, parser):
         parser.add_argument("--exp", default=0.999, help="Eps-greedy epxloration decay", type=float)
         parser.add_argument("--gamma", default=0.99, help="Discounting factor", type=float)
         parser.add_argument("--trace_lambda", default=0.9, help="Lambda returns", type=float)
-        parser.add_argument("--actor_lr", default=1e-2, help="Learning rate of actor", type=float)
-        parser.add_argument("--critic_lr", default=1e-2, help="Learning rate of critic/baseline", type=float)
+        parser.add_argument("--actor_lr", default= 0.00855, help="Learning rate of actor", type=float)
+        parser.add_argument("--critic_lr", default= 0.01622, help="Learning rate of critic/baseline", type=float)
         parser.add_argument("--state_lr", default=1e-3, help="Learning rate of state features", type=float)
         parser.add_argument("--gauss_variance", default=1, help="Variance for gaussian policy", type=float)
         parser.add_argument("--entropy_lambda", default=0.01, help="Lagrangian for policy's entropy", type=float)
@@ -101,5 +101,5 @@ class Parser(object):
         parser.add_argument("--Policy_basis_dim", default='2,16',
                             help="Dimensions for Neural network layers for policy")
 
-        parser.add_argument("--buffer_size", default=int(1e4), help="Size of memory buffer (3e5)", type=int)
+        parser.add_argument("--buffer_size", default=75000, help="Size of memory buffer (3e5)", type=int)
         parser.add_argument("--batch_size", default=1, help="Batch size", type=int)
